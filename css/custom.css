@@ -19,10 +19,24 @@ a:focus {
     color: purple;
 }
 
+
+a, span.link {
+  color: blue;
+}
+
+a:visited, span.visited {
+   color: purple;
+}
+
+a:active, span.active {
+   color: red;
+}
+
 p {
     font-size: 16px;
     line-height: 1.5;
 }
+
 
 header {
     position: relative;
