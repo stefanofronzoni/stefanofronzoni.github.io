@@ -1,351 +1,772 @@
-<!DOCTYPE html>
-<!-- Template by Quackit.com -->
-<!-- Images by various sources under the Creative Commons CC0 license and/or the Creative Commons Zero license. 
-Although you can use them, for a more unique website, replace these images with your own. -->
+<!doctype html>
 <html lang="en">
-
 <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Stefano Fronzoni — Personal</title>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
-    <title>Stefano Fronzoni</title>
+  <!-- Icons -->
+  <link href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" rel="stylesheet" />
 
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- MathJax -->
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-    <!-- Custom CSS: You can use this stylesheet to override any Bootstrap styles and/or apply your own styles -->
-    <link href="css/custom.css" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1720;
+      --panel:#071422;
+      --muted:#94a3b8;
+      --text:#e6eef6;
+      --accent:#7c3aed;
+      --card:#0b1220;
+      --max-width:980px;
+      --content-pad:28px;
+    }
 
-    <!-- FontAwesome -->
-    <link 
-    rel="stylesheet"
-    href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-    integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:linear-gradient(180deg,var(--bg) 0%, #08101a 100%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.55;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{ text-decoration:underline }
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    /* Layout */
+    .wrap{
+      display:flex;
+      min-height:100vh;
+      width:100%;
+      align-items:flex-start;
+      justify-content:center;
+      padding:48px 20px;
+    }
 
-    <!-- Custom Fonts from Google -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    .sidebar{
+      width:280px;
+      min-width:220px;
+      background:var(--panel);
+      border-radius:12px;
+      padding:28px;
+      margin-right:28px;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+      position:sticky;
+      top:28px;
+      height:fit-content;
+    }
 
-	<!-- MathJax for rendering LaTeX -->
-<script>
-  MathJax = {
-    tex: {
-      inlineMath: [['$', '$'], ['\\(', '\\)']],
-      displayMath: [['$$', '$$'], ['\\[', '\\]']]
-    },
-    svg: { fontCache: 'global' }
-  };
-</script>
-<script id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-</script>
-	
+    .avatar{
+      width:100%;
+      border-radius:10px;
+      overflow:hidden;
+      border: 2px solid rgba(255,255,255,0.03);
+      margin-bottom:18px;
+    }
+    .avatar img{ display:block; width:100%; height:auto; }
+
+    .name{
+      font-weight:700;
+      font-size:20px;
+      margin:0 0 2px 0;
+      letter-spacing: -0.02em;
+    }
+    .role{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:12px;
+    }
+    .institution{
+      font-size:13px;
+      color:var(--muted);
+      margin-bottom:18px;
+    }
+
+    .nav-mini{ display:flex; flex-direction:column; gap:8px; margin-bottom:18px;}
+    .nav-mini a{
+      font-size:14px;
+      padding:8px 10px;
+      border-radius:8px;
+      color:var(--text);
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+    }
+    .nav-mini a:hover{ background: rgba(255,255,255,0.02) }
+
+    .socials{
+      display:flex;
+      gap:10px;
+      margin-top:8px;
+    }
+    .socials a{
+      display:inline-block;
+      width:36px;height:36px;
+      line-height:36px;
+      text-align:center;
+      border-radius:8px;
+      background:transparent;
+      color:var(--muted);
+      border:1px solid rgba(255,255,255,0.02);
+    }
+    .socials a:hover{ color:var(--accent); border-color:rgba(124,58,237,0.2) }
+
+    .main{
+      max-width:var(--max-width);
+      flex:1;
+      min-width:260px;
+    }
+    .card{
+      background:transparent;
+      padding:var(--content-pad);
+      margin-bottom:22px;
+      border-radius:12px;
+      color:var(--text);
+    }
+
+    h1{ font-family:'Source Serif 4', serif; font-weight:600; font-size:28px; margin:0 0 6px }
+    h2.section{ font-size:18px; margin:0 0 14px; color:var(--text) }
+
+    /* ---------- Increased sizes for About, Education, Publications ---------- */
+
+    /* About: larger lead paragraph */
+    #about .lead{
+      font-size:17.5px; /* larger */
+      color:var(--muted);
+      margin:0 0 16px;
+    }
+
+    /* Education: larger school titles and interest labels */
+    #education .title{
+      font-size:16.5px; /* larger */
+      color:var(--text);
+      font-weight:600;
+    }
+    #education .meta{ font-size:15px; color:var(--muted); }
+    #education .edu-list .edu-item .meta .title{ font-size:15.5px; }
+
+    /* Publications: slightly larger but keep original styling exactly */
+    #publications .pub-title a{
+      font-size:18px; /* larger, but same layout/style */
+      line-height:1.18;
+      color:var(--text);
+      font-weight:600;
+    }
+    #publications .pub-authors{ font-size:14px; color:var(--muted); }
+    #publications .pub-abs{
+      font-size:15px; /* larger summary */
+      color:var(--muted);
+      margin:0 0 10px 0;
+      max-width:820px;
+    }
+    #publications details.bibtex summary{ font-size:13px; color:var(--accent); }
+
+    /* Conferences: a little smaller to de-emphasize (no style changes) */
+    #conferences p{ font-size:16px; color:var(--muted); margin:8px 0; }
+    #conferences a{ font-size:16px; color:var(--accent); }
+
+    /* ----------------------------------------------------------------------------- */
+
+    .two-col{ display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:22px; }
+    .edu-list, .pub-list{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:14px; }
+    .edu-item{ display:flex; gap:12px; align-items:flex-start; }
+    .edu-item .tag{ width:36px; height:36px; border-radius:8px; background:rgba(255,255,255,0.03); display:flex; align-items:center; justify-content:center; color:var(--accent); font-size:14px; }
+    .edu-item .meta{ font-size:14px; color:var(--muted); }
+
+    /* Publications */
+    .pub-item{ margin-bottom:34px; }
+    .pub-title a{text-decoration:none;}
+    .pub-title a:hover{text-decoration:underline;}
+    .pub-authors a{ color:var(--accent); text-decoration:none; }
+
+    .pub-links{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;            /* small gap to keep them closer */
+      font-size:13px;
+      margin:6px 0 10px 0;
+    }
+    .pub-links a{ color:var(--accent); text-decoration:none; font-weight:600; }
+    .pub-links a:hover { text-decoration:underline; }
+    .pub-links .journal{
+      color:var(--text);  /* white journal text */
+      font-weight:500;
+      margin-left:4px;    /* tiny extra nudge */
+      white-space:nowrap;
+    }
+
+    .pub-abs{ color:var(--muted); margin:0 0 10px 0; }
+
+    details.bibtex{
+      margin-top:6px;
+    }
+    details.bibtex summary{
+      cursor:pointer;
+      font-size:13px;
+      color:var(--accent);
+      outline:none;
+    }
+    details.bibtex pre{
+      background:rgba(255,255,255,0.03);
+      padding:14px;
+      border-radius:8px;
+      font-size:12px;
+      overflow-x:auto;
+      color:var(--text);
+      margin:8px 0 0 0;
+    }
+
+        /* ---------- New: Contributed talks styling (simple) ---------- */
+    .talks-list{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      margin-top:8px;
+    }
+    .talk-row{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
+    }
+    .talk-title{
+      color:var(--text); /* plain white title */
+      font-weight:100;
+      font-size:16.5px;
+      line-height:1.15;
+      margin:0;
+    }
+    .talk-meta{
+      color:var(--muted); /* grey location/university */
+      font-size:14px;
+      margin-top:4px;
+      font-style:normal;
+    }
+    .talk-right{
+      color:var(--muted);
+      font-style:italic;
+      white-space:nowrap;
+      flex-shrink:0;
+      font-size:14px;
+    }
+    /* For narrow screens stack the date under the title */
+    @media (max-width:640px){
+      .talk-row{ flex-direction:column; align-items:flex-start; }
+      .talk-right{ margin-top:6px; }
+    }
+    /* ----------------------------------------------------------------------------- */
+
+    /* Keep the dot aligned with section title baseline */
+    .section-anch {
+      margin-bottom:18px;
+      display:flex;
+      align-items:baseline;
+      gap:12px;
+      padding-left:0;
+    }
+    .section-anch .dot{
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 6px 16px rgba(124,58,237,0.18);
+      flex:0 0 12px;
+      display:inline-block;
+      transform: translateY(-0.08em);
+    }
+
+    footer.page-footer{
+      margin-top:26px;
+      padding:18px 0;
+      color:var(--muted);
+      font-size:14px;
+      text-align:center;
+    }
+
+    @media (max-width:900px){
+      .wrap{ padding:22px; flex-direction:column; align-items:stretch; }
+      .sidebar{ width:100%; margin-right:0; position:relative; top:0; display:flex; gap:18px; align-items:center; }
+      .avatar{ max-width:92px; flex-shrink:0 }
+      .main{ margin-top:18px; }
+      .two-col{ grid-template-columns:1fr; }
+      .section-anch .dot{ transform: translateY(-0.06em); }
+
+      /* scale adjustments on narrow screens to keep balance */
+      #about .lead{ font-size:16px; }
+      #education .title{ font-size:15px; }
+      #publications .pub-title a{ font-size:17px; }
+      #publications .pub-abs{ font-size:14px; }
+      #conferences p{ font-size:15px; }
+
+      /* allow journal text to wrap under very narrow widths */
+      .pub-links .journal{ white-space:normal; margin-left:6px; }
+    }
+
+    .muted{ color:var(--muted) }
+    .kbd{ font-family:monospace; font-size:13px; padding:2px 8px; background:rgba(255,255,255,0.02); border-radius:6px }
+    .accent{ color:var(--accent) }
+    .small{ font-size:13px }
+  </style>
 </head>
 
 <body>
+  <div class="wrap">
 
-    <!-- Navigation -->
-    <nav id="siteNav" class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Logo and responsive toggle -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <!-- Navbar links -->
-            <div class="collapse navbar-collapse" id="navbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li >
-                        <a href="#home">Home</a>
-                    </li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> About me <span class="caret"></span></a>
-						<ul class="dropdown-menu" aria-labelledby="about-us">
-							<li><a href="#education">Education</a></li>
-							<li><a href="#publications">Publications</a></li>
-							<li><a href="#conferences">Conferences</a></li>
-						</ul>
-					</li>
-                    <li>
-                        <a href="#contact">Contact</a>
-                    </li>
-                </ul>
-                
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container -->
-    </nav>
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar" aria-label="Sidebar">
+      <div class="avatar">
+        <!-- Replace this src with your photo -->
+        <img src="images/IMG_4878.JPG" alt="Stefano Fronzoni">
+      </div>
 
-	<!-- Header -->
-    <header id="home">
-        <div class="row">
-        <div class="header-content">
-            <div class="header-content-inner">
-            </div>
-            <div style="width: 30%; float:left;">
-                <img class="img-responsive img-circle center-block" src="images/IMG_4878.JPG" width="100%"></img>
-            </div>
+      <div>
+        <p class="name">Stefano Fronzoni</p>
+        <p class="role">DPhil Candidate — Applied Mathematics</p>
+        <p class="institution small">Mathematical Institute, University of Oxford</p>
+      </div>
 
-            <div style="width: 50%; float:right; background-color: black;">
-                <h2>Stefano Fronzoni</h2>
-                <h3>PhD Candidate</h3>
-        
-                <h3>
-                  <a href="https://www.maths.ox.ac.uk/" target="_blank" rel="noopener">
-                  <span> <font color ="white">Mathematical Institute, University of Oxford </font></span>
-                  </a>
-                </h3>
-                
-              </div>
-            </div>
-        </div>
-    </header>
+      <nav class="nav-mini" aria-label="Quick links">
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#publications">Publications</a>
+        <a href="#conferences">Conferences</a>
+        <a href="#talks">Contributed talks</a>
+        <a href="#contact">Contact</a>
+      </nav>
 
-	<!-- Intro Section -->
-    <section class="intro">
-        <div class="container">
-            <div id = "aboutme" class="row">
-                <div class="col-lg-8 col-lg-offset-2">
-                	<span class="glyphicon glyphicon-apple" style="font-size: 60px"></span>
-                    <h2 class="section-heading">About me</h2>
-                    
-			<p class="text-light">I am a DPhil student in Applied Mathematics at University of Oxford. My main interest is Numerical Analysis and Computational Mathematics. I am focused on the development of efficient algorithms to solve partial differential equations and optimisation problems. </p>
-		
-		</div>
-            </div>
-        </div>
-    </section>
+      <div class="socials" aria-hidden="false">
+        <a href="https://www.maths.ox.ac.uk/" title="Maths Institute" target="_blank" rel="noopener"><i class="fas fa-university"></i></a>
+        <a href="https://presentationfronzoni.github.io" title="Presentations" target="_blank" rel="noopener"><i class="fas fa-file-alt"></i></a>
+        <a href="mailto:stefano.fronzoni@maths.ox.ac.uk" title="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </aside>
 
-<section class="content">
-	<div class="container">
-            <div class="row">
-		
-	<p style="font-size:30px;"> <font color ="black"> You can see some of my work at:  <ul style="font-size:30px;"> 
-	       <li style="font-size:30px;"> <font color ="red">
-		       <a href="https://presentationfronzoni.github.io"  >
-			       Finite Element Approximation of fractional nonlinear PDEs.
-		       </a>
-		       </font>
-		        </font>
-	       </li></ul></p>
-		 </div>
-		</div>
-    </section>
+    <!-- MAIN CONTENT -->
+    <main class="main">
 
-	<!-- Content 1 -->
-    <section id="education" class="content">
-
-        <div class="container">  
-
-            <div class="row">
-
-                <div class="col-md-5">
-                	<h2 class="section-header"> Education </h2>                
-            
-                <ul class="ul-edu fa-ul">
-          
-                <li>
-                   <font color="#FF5A5F"><i class="fa-li fas fa-university"></i></font>
-                   <div class="description">
-                     <p class="course"> University of Oxford (2022-present)</p>
-                     <p class="institution">PhD in Mathematics</p>
-                   </div>
-                 </li>
-                 
-                 <li>
-                   <font color="#FF5A5F"><i class="fa-li fas fa-university"></i></font>
-                   <div class="description">
-                     <p class="course"> University of Trento (2020-2022)</p>
-                     <p class="institution"> Master's Degree in Mathematics </p>
-                   </div>
-                 </li>
-                 
-                 <li>
-                   <font color="#FF5A5F"><i class="fa-li fas fa-university"></i></font>
-                   <div class="description">
-                     <p class="course"> Durham University (2019-2020)</p>
-                     <p class="institution">Erasmus Exchange Programme</p>
-                   </div>
-                 </li>
-                 
-                 <li>
-                   <font color="#FF5A5F"><i class="fa-li fas fa-university"></i></font>
-                   <div class="description">
-                     <p class="course"> University of Bologna (2016-2020) </p>
-                     <p class="institution">Bachelor's Degree in Mathematics</p>
-                   </div>
-                 </li>
-                    
-               </ul>
-
-                </div> 
-            
-            <div class="col-md-5">
-                <h2 class="section-header"> Interests </h2>
-
-                <ul class="ul-edu fa-ul">
-          
-                    <li>
-                       <font color="#FF5A5F"><i class="fa-li fas fa-search"></i></font>
-                       <div class="description">
-                         <p class="course"> Numerical Analysis </p>
-                       </div>
-                     </li>
-
-                     <li>
-                        <font color="#FF5A5F"><i class="fa-li fas fa-search"></i></font>
-                        <div class="description">
-                          <p class="course"> Scientific Computing </p>
-                        </div>
-                      </li>
-
-                     <li>
-                        <font color="#FF5A5F"><i class="fa-li fas fa-search"></i></font>
-                        <div class="description">
-                          <p class="course"> Modeling and Simulation </p>
-                        </div>
-                      </li>
-
-                      <li>
-                        <font color="#FF5A5F"><i class="fa-li fas fa-search"></i></font>
-                        <div class="description">
-                          <p class="course"> Optimisation </p>
-                        </div>
-                      </li>
-
-                      <li>
-                        <font color="#FF5A5F"><i class="fa-li fas fa-search"></i></font>
-                        <div class="description">
-                          <p class="course"> Numerical methods for PDEs (Finite Elements, Finite Volumes) </p>
-                        </div>
-                      </li>
-
-			
-                 </ul>
-              </div>
-              
-            </div>
+      <!-- ABOUT -->
+      <section id="about" class="card" aria-labelledby="about-heading">
+        <div class="section-anch">
+          <div class="dot" aria-hidden="true"></div>
+          <h2 id="about-heading" class="section">About</h2>
         </div>
 
+        <p class="lead">I am a DPhil student in Applied Mathematics at the University of Oxford. My main interests are <strong>Numerical Analysis</strong> and <strong>Scientific Computing</strong> of Partial Differential Equations (PDEs), with a focus on nonlinear and <strong>nonlocal</strong> PDEs, involving the <strong> fractional Laplacian</strong>.</p>
 
-    </section>
+        <p class="small muted">You can see some of my work: <a href="https://presentationfronzoni.github.io" target="_blank" rel="noopener" class="accent">Finite Element Approximation of fractional nonlinear PDEs</a></p>
+      </section>
 
-	<!-- Content 2 -->
-     <section id="publications" class="content content-2">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                	<h2 class="section-header">Publications</h2>
-                </div>                  
+      <!-- EDUCATION & INTERESTS -->
+      <section id="education" class="card" aria-labelledby="edu-heading">
+        <div class="section-anch">
+          <div class="dot" aria-hidden="true"></div>
+          <h2 id="edu-heading" class="section">Education & interests</h2>
+        </div>
+
+        <div class="two-col">
+          <div>
+            <h3 class="small" style="margin:0 0 10px 0;">Education</h3>
+            <ul class="edu-list" aria-label="Education list">
+              <li class="edu-item">
+                <div class="tag"><i class="fas fa-graduation-cap"></i></div>
+                <div class="meta">
+                  <div class="title">University of Oxford (2022–present)</div>
+                  <div class="small muted">PhD in Mathematics</div>
+                </div>
+              </li>
+
+              <li class="edu-item">
+                <div class="tag"><i class="fas fa-graduation-cap"></i></div>
+                <div class="meta">
+                  <div class="title">University of Trento (2020–2022)</div>
+                  <div class="small muted">Master's Degree in Mathematics</div>
+                </div>
+              </li>
+
+              <li class="edu-item">
+                <div class="tag"><i class="fas fa-graduation-cap"></i></div>
+                <div class="meta">
+                  <div class="title">Durham University (2019–2020)</div>
+                  <div class="small muted">Erasmus Exchange Programme</div>
+                </div>
+              </li>
+
+              <li class="edu-item">
+                <div class="tag"><i class="fas fa-graduation-cap"></i></div>
+                <div class="meta">
+                  <div class="title">University of Bologna (2016–2020)</div>
+                  <div class="small muted">Bachelor's Degree in Mathematics</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="small" style="margin:0 0 10px 0;">Interests</h3>
+            <ul class="edu-list">
+              <li class="edu-item">
+                <div class="tag"><i class="fas fa-search"></i></div>
+                <div class="meta"><div class="title">Numerical Analysis</div></div>
+              </li>
+              <li class="edu-item">
+                <div class="tag"><i class="fas fa-cogs"></i></div>
+                <div class="meta"><div class="title">Scientific Computing</div></div>
+              </li>
+               <li class="edu-item">
+                <div class="tag"><i class="fas fa-project-diagram"></i></div>
+                <div class="meta"><div class="title">Numerical methods for PDEs (Finite Element, Finite Volume)</div></div>
+              </li>
+               <li class="edu-item">
+                <div class="tag"><i class="fas fa-exchange-alt"></i></div>
+                <div class="meta"><div class="title">Nonlocal and fractional PDEs</div></div>
+              </li>
+              <li class="edu-item">
+                <div class="tag"><i class="fas fa-vector-square"></i></div>
+                <div class="meta"><div class="title">Modeling & Simulation</div></div>
+              </li>
+              <li class="edu-item">
+                <div class="tag"><i class="fas fa-bullseye"></i></div>
+                <div class="meta"><div class="title">Optimisation</div></div>
+              </li>
+             
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- PUBLICATIONS (HTML link + white journal text on same line) -->
+      <section id="publications" class="card" aria-labelledby="pub-heading">
+        <div class="section-anch">
+          <div class="dot" aria-hidden="true"></div>
+          <h2 id="pub-heading" class="section">Publications</h2>
+        </div>
+
+        <!-- Paper 1 -->
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://arxiv.org/abs/2511.01727" target="_blank" rel="noopener">
+              Finite Elements with weighted bases for the fractional Laplacian
+            </a>
+          </div>
+
+          <div class="pub-authors">
+            <a href="https://sites.google.com/view/felixdelteso/home" target="_blank" rel="noopener">Félix del Teso</a>,
+            <a href="https://gomezcastro.xyz" target="_blank" rel="noopener">David Gómez Castro</a>
+          </div>
+
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2511.01727" target="_blank" rel="noopener">HTML</a>
+            <span class="journal">ArXiv, 2025.</span>
+          </div>
+
+          <p class="pub-abs">
+            Finite Element method for the Dirichlet problem for the integral fractional Laplacian $(-\Delta)^s$, $s\in(0,1)$,
+            introducing bases of the form $\delta^s\times$ (piecewise linear functions). The method exploits the improved regularity
+            of $u/\delta^s$ and achieves higher convergence rates (order $h^{2-s}$ under standard smoothness).
+          </p>
+
+          <details class="bibtex">
+            <summary>BibTeX</summary>
+<pre>
+@article{delTesoGomezCastroFronzoni2025,
+  title   = {Finite Elements with weighted bases for the fractional Laplacian},
+  author  = {del Teso, F{\'e}lix and G{\'o}mez Castro, David and Fronzoni, Stefano},
+  journal = {arXiv preprint arXiv:2511.01727},
+  year    = {2025}
+}
+</pre>
+          </details>
+        </div>
+
+        <!-- Paper 2 -->
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://arxiv.org/abs/2505.20560" target="_blank" rel="noopener">
+              A minimax method for the spectral fractional Laplacian and related evolution problems
+            </a>
+          </div>
+
+          <div class="pub-authors">
+            <a href="https://carrilloja.org" target="_blank" rel="noopener">José A. Carrillo</a>,
+            <a href="https://people.maths.ox.ac.uk/nakatsukasa/" target="_blank" rel="noopener">Yuji Nakatsukasa</a>,
+            <a href="https://people.maths.ox.ac.uk/suli/" target="_blank" rel="noopener">Endre Süli</a>
+          </div>
+
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2505.20560" target="_blank" rel="noopener">HTML</a>
+            <span class="journal">ArXiv, 2025.</span>
+          </div>
+
+          <p class="pub-abs">
+            A fast, accurate numerical method based on Finite Elements and rational approximations for the inverse of the spectral fractional Laplacian. The method is applied to evolutionary PDEs that involve the fractional Laplacian through an interaction potential (the fractional porous medium equation and the fractional Keller-Segel equation) with numerical validation of qualitative properties.
+          </p>
+
+          <details class="bibtex">
+            <summary>BibTeX</summary>
+<pre>
+@article{CarrilloNakatsukasaSuliFronzoni2025,
+  title   = {A minimax method for the spectral fractional Laplacian and related evolution problems},
+  author  = {Carrillo, Jos{\'e} A. and Nakatsukasa, Yuji and S{\"u}li, Endre and Fronzoni, Stefano},
+  journal = {arXiv preprint arXiv:2505.20560},
+  year    = {2025}
+}
+</pre>
+          </details>
+        </div>
+
+        <!-- Paper 3 -->
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://www.aimsciences.org/article/doi/10.3934/cpaa.2025114" target="_blank" rel="noopener">
+              Rate of Convergence for a Nonlocal-to-local Limit in One Dimension
+            </a>
+          </div>
+
+          <div class="pub-authors">
+            <a href="https://carrilloja.org" target="_blank" rel="noopener">José A. Carrillo</a>,
+            <a href="https://www.charleselbar.com" target="_blank" rel="noopener">Charles Elbar</a>,
+            <a href="https://people.maths.ox.ac.uk/skrzeczkowsk/" target="_blank" rel="noopener">Jakub Skrzeczkowski</a>
+          </div>
+
+          <div class="pub-links">
+            <a href="https://www.aimsciences.org/article/doi/10.3934/cpaa.2025114" target="_blank" rel="noopener">HTML</a>
+            <span class="journal">Communications on Pure and Applied Analysis, 2025.</span>
+          </div>
+
+          <p class="pub-abs">
+            Study that quantifies the rate at which a nonlocal porous-medium approximation converges to the local model in one dimension.
+            The analysis exploits the so-called Evolutionary Variational Inequality for both the nonlocal and local equations, as well as a priori estimates, and provides numerical evidence using a Finite Volume scheme, suggesting possible improvements.
+          </p>
+
+          <details class="bibtex">
+            <summary>BibTeX</summary>
+<pre>
+@article{CarrilloElbarSkrzeczkowskiFronzoni2025,
+  title   = {Rate of Convergence for a Nonlocal-to-local Limit in One Dimension},
+  author  = {Carrillo, Jos{\'e} A. and Elbar, Charles and Skrzeczkowski, Jakub and Fronzoni, Stefano},
+  journal = {Communications on Pure and Applied Analysis},
+  year    = {2025},
+  doi     = {10.3934/cpaa.2025114}
+}
+</pre>
+          </details>
+        </div>
+
+        <!-- Paper 4 -->
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://link.springer.com/article/10.1007/s00211-025-01486-3" target="_blank" rel="noopener">
+              Finite Element Approximation of the Fractional Porous Medium Equation
+            </a>
+          </div>
+
+          <div class="pub-authors">
+            <a href="https://carrilloja.org" target="_blank" rel="noopener">José A. Carrillo</a>,
+            <a href="https://people.maths.ox.ac.uk/suli/" target="_blank" rel="noopener">Endre Süli</a>
+          </div>
+
+          <div class="pub-links">
+            <a href="https://link.springer.com/article/10.1007/s00211-025-01486-3" target="_blank" rel="noopener">HTML</a>
+            <span class="journal">Numerische Mathematik, 2025.</span>
+          </div>
+
+          <p class="pub-abs">
+            Finite Element scheme for a porous medium equation with a nonlocal pressure, given by the spectral Neumann Laplacian.
+            The study performs a rigorous passage to the limit as the spatial and temporal discretisation parameters tend to zero and shows that a subsequence of Finite Element approximations defined by the proposed numerical method converges to a bounded and nonnegative weak solution of the initial-boundary-value problem. 
+            Exponential decay of the total energy associated with the problem is also established.
+          </p>
+
+          <details class="bibtex">
+            <summary>BibTeX</summary>
+<pre>
+@article{CarrilloSuliFronzoni2025,
+  title   = {Finite Element Approximation of the Fractional Porous Medium Equation},
+  author  = {Carrillo, Jos{\'e} A. and S{\"u}li, Endre and Fronzoni, Stefano},
+  journal = {Numerische Mathematik},
+  year    = {2025},
+  doi     = {10.1007/s00211-025-01486-3}
+}
+</pre>
+          </details>
+        </div>
+
+        <!-- Paper 5 -->
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://doi.org/10.1017/S0956792524000172" target="_blank" rel="noopener">
+              A finite-volume scheme for fractional diffusion on bounded domains
+            </a>
+          </div>
+
+          <div class="pub-authors">
+            <a href="https://rafaelbailo.com" target="_blank" rel="noopener">Rafael Bailo</a>,
+            <a href="https://carrilloja.org" target="_blank" rel="noopener">José A. Carrillo</a>,
+            <a href="https://gomezcastro.xyz" target="_blank" rel="noopener">David Gómez Castro</a>
+          </div>
+
+          <div class="pub-links">
+            <a href="https://doi.org/10.1017/S0956792524000172" target="_blank" rel="noopener">HTML</a>
+            <span class="journal">European Journal of Applied Mathematics, 1-21, 2024.</span>
+          </div>
+
+          <p class="pub-abs">
+            Conservation-law formulation of a fractional Laplacian suitable for Finite Volume schemes,
+            allowing direct no-flux boundary prescription and capturing anomalous diffusion. Numerical exploration of properties of the fractional heat equation and Lévy-Fokker-Plack equation with respect to their stationary states and long-time asymptotics.
+          </p>
+
+          <details class="bibtex">
+            <summary>BibTeX</summary>
+<pre>
+@article{BailoCarrilloGomezCastroFronzoni2024,
+  title   = {A finite-volume scheme for fractional diffusion on bounded domains},
+  author  = {Bailo, Rafael and Carrillo, Jos{\'e} A. and G{\'o}mez Castro, David and Fronzoni, Stefano},
+  journal = {European Journal of Applied Mathematics},
+  year    = {2024},
+  doi     = {10.1017/S0956792524000172}
+}
+</pre>
+          </details>
+        </div>
+
+      </section>
+
+      <!-- CONFERENCES (kept original links) -->
+      <section id="conferences" class="card" aria-labelledby="conf-heading">
+        <div class="section-anch">
+          <div class="dot" aria-hidden="true"></div>
+          <h2 id="conf-heading" class="section">Conferences</h2>
+        </div>
+
+        <div style="padding: 1px;">
+            <p> &#8729 <a href="https://ins.sjtu.edu.cn/conferences/2655" target="_blank" rel="noopener"> International Summer School on Mathematical Biology </a> &#8729 Shanghai, China, 2025 </p>
+        </div>
+
+        <div style="padding: 1px;">
+            <p> &#8729 <a href="https://ins.uni-bonn.de/group/gedicke/page/cmam-10" target="_blank" rel="noopener"> CMAM-10, 10th International Conference on Computational Methods in Applied Mathematics </a> &#8729 Bonn, Germany, 2024 </p>
+        </div>
+
+        <div style="padding: 1px;">
+            <p> &#8729 <a href="https://www.heidelberg-laureate-forum.org" target="_blank" rel="noopener"> Heidelberg Laureate Forum </a> &#8729 Heidelberg, Germany, 2023 </p>
+        </div>
+
+        <div style="padding: 1px;">
+            <p> &#8729 <a href="https://numasp2023.wordpress.com" target="_blank" rel="noopener"> Numerical Aspects of Hyperbolic Balance Laws </a> &#8729 Cortona, Italy, 2023 </p>
+        </div>
+
+        <div style="padding: 1px;">
+            <p> &#8729 <a href="https://www.sibbm.org/sibbm-2023-frontiers-in-molecular-biology" target="_blank" rel="noopener"> SIBBM Frontiers in Molecular Biology </a> &#8729 Italy, 2021 </p>
+        </div>
+      </section>
+
+
+       <!-- NEW: CONTRIBUTED TALKS (plain white title, grey meta like conferences) -->
+      <section id="talks" class="card" aria-labelledby="talks-heading">
+        <div class="section-anch">
+          <div class="dot" aria-hidden="true"></div>
+          <h2 id="talks-heading" class="section">Contributed talks</h2>
+        </div>
+
+        <div class="talks-list">
+          <div class="talk-row">
+            <div>
+              <p class="talk-title">PDEs and Numerical Analysis Seminar</p>
+              <div class="talk-meta">Universidad Autónoma de Madrid, invited talk</div>
             </div>
-            <div style="padding: 1px;" >
+            <div class="talk-right">Mar 2025</div>
+          </div>
 
-		<p style="font-size:20px;"> <font color ="white">&#8729 Finite Elements with weighted bases for the fractional Laplacian &#8729 <br>  <b> <a href="https://arxiv.org/abs/2511.01727" target="_blank" rel="noopener">
-                <span> <font color ="white"> ArXiv, 2025. </font></span> 
-                </a> </b> </font> </p> 
-		    <p style="font-size:17.5px;"> <a href="https://sites.google.com/view/felixdelteso/home" target="_blank" rel="noopener"> Félix del Teso </a>, <a href="https://gomezcastro.xyz" target="_blank" rel="noopener"> David Gómez Castro </a> </p> 
-             <p style="font-size:15px;"> This work presents a numerical study of the Dirichlet problem for the fractional Laplacian $(-\Delta)^s$ with $s \in (0,1)$ using Finite Element methods with non-standard bases. Classical approaches based on piece-wise linear basis yield h12 convergence rates in the Sobolev-Slobodeckij norm Hs due to the limited boundary regularity of the solution $u(x)$, which behaves like $\text{dist}(x,\mathbb{R}\setminus \Omega)^s$, where h is the diameter of the mesh elements. To overcome this limitation, we propose a novel Finite Element basis of the form $\delta^s \times$ (piece-wise linear functions), where $\delta$ is any suitably smooth approximation of $\text{dist}(x,\mathbb{R}^d\setminus \Omega)$. This exploits the improved regularity of $u/\delta^s$, achieving higher convergence rates. Under standard smoothness assumptions the method attains an order $h^{2−s}$ on quasi-uniform meshes, improving the rates with the piece-wise linear basis. We provide a rigorous theoretical error analysis with explicit rates and validate it through numerical experiments. <font color ="white">  </font> </p>
+          <div class="talk-row">
+            <div>
+              <p class="talk-title">Queen’s College internal seminar</p>
+              <div class="talk-meta">Queen’s College, University of Oxford</div>
+            </div>
+            <div class="talk-right">Mar 2025</div>
+          </div>
 
-		    <p style="font-size:20px;"> <font color ="white">&#8729 A minimax method for the spectral fractional Laplacian and related evolution problems &#8729 <br>  <b> <a href="https://arxiv.org/abs/2505.20560" target="_blank" rel="noopener">
-                <span> <font color ="white"> ArXiv, 2025. </font></span> 
-                </a> Submitted for publication. </b> </font> </p> 
-		    <p style="font-size:17.5px;"> <a href="https://carrilloja.org" target="_blank" rel="noopener"> José A. Carrillo </a>, <a href="https://people.maths.ox.ac.uk/nakatsukasa/" target="_blank" rel="noopener"> Yuji Nakatsukasa </a>, <a href="https://people.maths.ox.ac.uk/suli/" target="_blank" rel="noopener"> Endre Süli </a> </p> 
-               <p style="font-size:15px;"> We present a numerical method for the approximation of the inverse of the fractional Laplacian $(-\Delta)^s$, based on its spectral definition, using rational functions to approximate the fractional power of a matrix. The proposed numerical method is fast and accurate, benefiting from the fact that the matrix arises from a finite element approximation of the Laplacian, which makes it applicable to a wide range of domains with potentially irregular shapes. We make use of state-of-the-art software to compute the best rational approximation of a fractional power. We analyze the convergence rate of our method and validate our findings through a series of numerical experiments. Additionally, we apply the proposed numerical method to different evolution problems that involve the fractional Laplacian through an interaction potential: the fractional porous medium equation and the fractional Keller-Segel equation. We then investigate the accuracy of the resulting numerical method, focusing in particular on the accurate reproduction of qualitative properties of the associated analytical solutions to these partial differential equations. <font color ="white">  </font> </p> 
+          <div class="talk-row">
+            <div>
+              <p class="talk-title">Junior Analysis and Probability Seminar</p>
+              <div class="talk-meta">University of Warwick, invited talk</div>
+            </div>
+            <div class="talk-right">Feb 2025</div>
+          </div>
 
+          <div class="talk-row">
+            <div>
+              <p class="talk-title">10th International Conference on Computational Methods in Applied Mathematics (CMAM-10) Minisymposium</p>
+              <div class="talk-meta">Bonn, Germany, invited talk</div>
+            </div>
+            <div class="talk-right">Jun 2024</div>
+          </div>
 
-		<p style="font-size:20px;"> <font color ="white">&#8729 Rate of Convergence for a Nonlocal-to-local Limit in One Dimension &#8729 <br>  <b> <a href="https://www.aimsciences.org/article/doi/10.3934/cpaa.2025114" target="_blank" rel="noopener">
-                <span> <font color ="white"> Communications on Pure and Applied Analysis, 2025. </font></span> 
-                </a> </b> </font> </p> 
-		    <p style="font-size:17.5px;">  <a href="https://carrilloja.org" target="_blank" rel="noopener"> José A. Carrillo </a>, <a href="https://www.charleselbar.com" target="_blank" rel="noopener"> Charles Elbar </a>, <a href="https://people.maths.ox.ac.uk/skrzeczkowsk/" target="_blank" rel="noopener"> Jakub Skrzeczkowski </a> </p>
-               <p style="font-size:15px;"> We consider a nonlocal approximation of the quadratic porous medium equation where the pressure is given by a convolution with a mollification kernel. It is known that when the kernel concentrates around the origin, the nonlocal equation converges to the local one. In one spatial dimension, for a particular choice of the kernel, and under mere assumptions on the initial condition, we quantify the rate of convergence in the 2-Wasserstein distance. Our proof is very simple, exploiting the so-called Evolutionary Variational Inequality for both the nonlocal and local equations as well as a priori estimates. We also present numerical simulations using the finite volume method, which suggests that the obtained rate can be improved - this will be addressed in a forthcoming work. <font color ="white">  </font> </p> 
+          <div class="talk-row">
+            <div>
+              <p class="talk-title">Imperial College UCL Numerical Analysis Seminar</p>
+              <div class="talk-meta">Imperial College, London, invited talk</div>
+            </div>
+            <div class="talk-right">Feb 2024</div>
+          </div>
 
-		    
-		    <p style="font-size:20px;"> <font color ="white">&#8729 Finite Element Approximation of the Fractional Porous Medium Equation &#8729 <br>  <b> <a href="https://link.springer.com/article/10.1007/s00211-025-01486-3?utm_source=rct_congratemailt&utm_medium=email&utm_campaign=oa_20250830&utm_content=10.1007%2Fs00211-025-01486-3" target="_blank" rel="noopener">
-                <span> <font color ="white"> Numerische Mathematik, 2025. </font></span>
-			    
-                </a> </b> </font> </p>
-		    <p style="font-size:17.5px;"> <a href="https://carrilloja.org" target="_blank" rel="noopener"> José A. Carrillo </a>, <a href="https://people.maths.ox.ac.uk/suli/" target="_blank" rel="noopener"> Endre Süli </a> </p> 
-		    <p style="font-size:15px;"> We construct a finite element method for the numerical solution of a fractional porous medium equation on a bounded open Lipschitz polytopal domains. The pressure in the model is defined as the solution of a fractional Poisson equation, involving the fractional Neumann Laplacian in terms of its spectral definition. We perform a rigorous passage to the limit as the spatial and temporal discretization parameters tend to zero and show that a subsequence of the sequence of finite element approximations defined by the proposed numerical method converges to a bounded and nonnegative weak solution of the initial-boundary-value problem under consideration. This result can be therefore viewed as a constructive proof of the existence of a nonnegative, energy-dissipative, weak solution to the initial-boundary-value problem for the fractional porous medium equation under consideration, based on the Neumann Laplacian. The convergence proof relies on results concerning the finite element approximation of the spectral fractional Laplacian and compactness techniques for nonlinear partial differential equations, together with properties of the equation, which are shown to be inherited by the numerical method. We also prove that the total energy associated with the problem under consideration exhibits exponential decay in time. <font color ="white"> </font> </p>
-		    
-               <p style="font-size:20px;"> <font color ="white">&#8729 A finite-volume scheme for fractional diffusion on bounded domains &#8729 <br>  <b> <a href="https://doi.org/10.1017/S0956792524000172" target="_blank" rel="noopener">
-                <span> <font color ="white"> European Journal of Applied Mathematics, 1-21, 2024. </font></span> 
-                </a> </b> </font> </p> 
-		    <p style="font-size:17.5px;"> <a href="https://rafaelbailo.com" target="_blank" rel="noopener"> Rafael Bailo </a>, <a href="https://carrilloja.org" target="_blank" rel="noopener"> José A. Carrillo </a>, <a href="https://gomezcastro.xyz" target="_blank" rel="noopener"> David Gómez Castro </a> </p> 
-               <p style="font-size:15px;">  <font color ="white"> We propose a new fractional Laplacian for bounded domains, expressed as a conservation law and thus particularly suited to finite-volume schemes. Our approach permits the direct prescription of no-flux boundary conditions. We first show the well-posedness theory for the fractional heat equation. We also develop a numerical scheme, which correctly captures the action of the fractional Laplacian and its anomalous diffusion effect. We benchmark numerical solutions for the L'evy-Fokker-Planck equation against known analytical solutions. We conclude by numerically exploring properties of these equations with respect to their stationary states and long-time asymptotics. </font> </p> 
-               
-            </div>  
-            
+          <div class="talk-row">
+            <div>
+              <p class="talk-title">Mathematical Institute Numerical Analysis Seminar</p>
+              <div class="talk-meta">Mathematical Institute, University of Oxford</div>
+            </div>
+            <div class="talk-right">Oct 2023</div>
+          </div>
+
+          <div class="talk-row">
+            <div>
+              <p class="talk-title">Heidelberg Laureate Forum Flash Session</p>
+              <div class="talk-meta">Heidelberg, Germany</div>
+            </div>
+            <div class="talk-right">Sept 2023</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="card" aria-labelledby="contact-heading">
+        <div class="section-anch">
+          <div class="dot" aria-hidden="true"></div>
+          <h2 id="contact-heading" class="section">Contact</h2>
         </div>
 
-    </section>    
+        <p class="small muted">For collaborations, talks or questions: <a href="mailto:stefano.fronzoni@maths.ox.ac.uk">stefano.fronzoni@maths.ox.ac.uk</a></p>
+        <p class="small muted">Department: <a href="https://www.maths.ox.ac.uk/" target="_blank" rel="noopener">Mathematical Institute, University of Oxford</a></p>
+      </section>
 
-	<!-- Content 3 -->
-     <section id="conferences" class="content content-3">
-        <div class="container">
-			<h2 class="section-header"><span class="glyphicon glyphicon-pushpin text-primary"></span><br> Conferences</h2>
-        </div>
+      <footer class="page-footer">
+        © <span id="year"></span> Stefano Fronzoni.
+      </footer>
 
-		 <div style="padding: 1px;" >
-            <p style="font-size:20px;"> &#8729 <a href="https://ins.sjtu.edu.cn/conferences/2655" target="_blank" rel="noopener"> International Summer School on Mathematical Biology </a> &#8729 Shanghai, China, 2025 </p> 
-         </div> 
+    </main>
+  </div>
 
-	<div style="padding: 1px;" >
-            <p style="font-size:20px;"> &#8729 <a href="https://ins.uni-bonn.de/group/gedicke/page/cmam-10" target="_blank" rel="noopener"> CMAM-10, 10th International Conference on Computational Methods in Applied Mathematics </a> &#8729 Bonn, Germany, 2024 </p> 
-         </div> 
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-	     
-        <div style="padding: 1px;" >
-            <p style="font-size:20px;"> &#8729 <a href="https://www.heidelberg-laureate-forum.org" target="_blank" rel="noopener"> Heidelberg Laureate Forum </a> &#8729 Heidelberg, Germany, 2023 </p> 
-         </div> 
-
-         <div style="padding: 1px;" >
-            <p style="font-size:20px;"> &#8729 <a href="https://numasp2023.wordpress.com" target="_blank" rel="noopener"> Numerical Aspects of Hyperbolic Balance Laws </a> &#8729 Cortona, Italy, 2023 </p> 
-         </div> 
-
-         <div style="padding: 1px;" >
-            <p style="font-size:20px;"> &#8729 <a href="https://www.sibbm.org/sibbm-2023-frontiers-in-molecular-biology" target="_blank" rel="noopener"> SIBBM Frontiers in Molecular Biology </a> &#8729 Italy, 2021 </p> 
-         </div> 
-
-    </section>
-    
-	<!-- Footer -->
-    <footer class="page-footer">
-    
-    	<!-- Contact Us -->
-        <div id= "contact" class="contact">
-        	<div class="container">
-				<h2 class="section-heading">Contact</h2>
-				<p><span class="glyphicon glyphicon-envelope"></span><br> fronzoni@maths.ox.ac.uk</p>
-        	</div>
-        </div>
-        	
-        
-    </footer>
-
-    <!-- jQuery -->
-    <script src="js/jquery-1.11.3.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="js/jquery.easing.min.js"></script>
-    
-    <!-- Custom Javascript -->
-    <script src="js/custom.js"></script>
-
+    // Smooth scrolling for anchors
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const target = document.querySelector(a.getAttribute('href'));
+        if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth', block:'start'}); }
+      });
+    });
+  </script>
 </body>
-
 </html>
