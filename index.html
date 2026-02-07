@@ -56,18 +56,16 @@
       padding:48px 20px;
     }
 
-    .sidebar{
-      width:340px;          /* try 320–360 */
-      min-width:300px;
+    .sidebar{ width:280px; 
+      min-width:220px;
       background:var(--panel);
-      border-radius:10px;   /* slightly rounder looks better at larger size */
-      padding:36px;         /* more breathing room */
-      margin-right:36px;
-      box-shadow: 0 12px 40px rgba(2,6,23,0.65);
-      position:sticky;
-      top:28px;
-      height:fit-content;
-    }
+      border-radius:12px; 
+      padding:28px; 
+      margin-right:28px; 
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6); 
+      position:sticky; 
+      top:28px; 
+      height:fit-content; }
 
     .avatar{
       width:100%;
@@ -87,7 +85,7 @@
     .role{
       margin:0;
       color:var(--muted);
-      font-size:15px;
+      font-size:13px;
       margin-bottom:12px;
     }
     .institution{
@@ -98,7 +96,7 @@
 
     .nav-mini{ display:flex; flex-direction:column; gap:8px; margin-bottom:18px;}
     .nav-mini a{
-      font-size:15px;
+      font-size:12px;
       padding:8px 10px;
       border-radius:8px;
       color:var(--text);
@@ -346,12 +344,12 @@
       </div>
 
       <nav class="nav-mini" aria-label="Quick links">
-        <a href="#about">About</a>
+        <!-- <a href="#about">About</a> -->
         <a href="#education">Education</a>
         <a href="#publications">Publications</a>
         <a href="#conferences">Conferences</a>
         <a href="#talks">Contributed talks</a>
-        <a href="#contact">Contact</a>
+        <!-- <a href="#contact">Contact</a> -->
       </nav>
 
       <div class="socials" aria-hidden="false">
@@ -776,4 +774,5 @@
   </script>
 </body>
 </html>
+
 
