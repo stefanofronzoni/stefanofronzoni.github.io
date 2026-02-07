@@ -130,14 +130,20 @@
       flex:1;
       min-width:260px;
     }
+    /* Replace current .card rule with this */
     .card{
-      background:transparent;
-      padding:var(--content-pad);
-      margin-bottom:22px;
-      border-radius:12px;
-      color:var(--text);
-    }
+      /* solid-ish panel so the body gradient can't peek through */
+      background: linear-gradient(180deg, var(--card) 0%, rgba(11,18,32,0.95) 100%);
+      padding: var(--content-pad);
+      margin-bottom: 22px;
+      border-radius: 12px;
+      color: var(--text);
 
+      /* small extras to avoid sub-pixel seams on some browsers */
+      backface-visibility: hidden;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+    }
     h1{ font-family:'Source Serif 4', serif; font-weight:600; font-size:28px; margin:0 0 6px }
     h2.section{ font-size:18px; margin:0 0 14px; color:var(--text) }
 
@@ -768,5 +774,8 @@
       });
     });
   </script>
+</body>
+</html>
+
 </body>
 </html>
