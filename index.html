@@ -57,13 +57,13 @@
     }
 
     .sidebar{
-      width:280px;
-      min-width:220px;
+      width:340px;          /* try 320–360 */
+      min-width:300px;
       background:var(--panel);
-      border-radius:12px;
-      padding:28px;
-      margin-right:28px;
-      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+      border-radius:10px;   /* slightly rounder looks better at larger size */
+      padding:36px;         /* more breathing room */
+      margin-right:36px;
+      box-shadow: 0 12px 40px rgba(2,6,23,0.65);
       position:sticky;
       top:28px;
       height:fit-content;
@@ -87,7 +87,7 @@
     .role{
       margin:0;
       color:var(--muted);
-      font-size:13px;
+      font-size:15px;
       margin-bottom:12px;
     }
     .institution{
@@ -98,7 +98,7 @@
 
     .nav-mini{ display:flex; flex-direction:column; gap:8px; margin-bottom:18px;}
     .nav-mini a{
-      font-size:14px;
+      font-size:15px;
       padding:8px 10px;
       border-radius:8px;
       color:var(--text);
@@ -777,5 +777,3 @@
 </body>
 </html>
 
-</body>
-</html>
